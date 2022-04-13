@@ -11,7 +11,7 @@ export const DisplayAddresses = () => {
   }, [])
 
   return (
-    <div>
+    <div style={{ background: 'white' }}>
       <h1>Addresses</h1>
       <ul>
         {addresses.map(account => (
