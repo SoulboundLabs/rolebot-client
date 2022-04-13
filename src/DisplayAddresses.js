@@ -25,7 +25,9 @@ export const DisplayAddresses = () => {
             <a href="#" className="focus:outline-none">
               <span className="absolute inset-0" aria-hidden="true" />
               <p className="text-sm font-medium text-gray-900">{address.id}</p>
-              <p className="text-sm text-gray-500 truncate">The Graph</p>
+              <p className="text-sm text-gray-500 truncate">
+                {address.discordID}
+              </p>
             </a>
           </div>
         </div>

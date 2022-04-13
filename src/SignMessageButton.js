@@ -24,9 +24,9 @@ export const signMessage = async (provider, address, discordID) => {
 export const SignMessageButton = () => {
   const [{ wallet, connecting }] = useConnectWallet()
 
-  const discordID = 'Some Discord ID'
-
   const address = wallet?.accounts[0]?.address
+
+  const discordID = `Fake Discord ID for ${address}`
 
   return (
     <div>
