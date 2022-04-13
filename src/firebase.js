@@ -29,9 +29,7 @@ export const db = getFirestore(app)
 export async function setNewAddress(address) {
   // TODO: Set DISCORD IDs here
   await setDoc(doc(db, 'addresses', address), {
-    name: 'Los Angeles',
-    state: 'CA',
-    country: 'USA'
+    exampleKey: 'exampleValue'
   })
 }
 
