@@ -26,10 +26,11 @@ export const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 
 // Firebase Getters and Setters
-export async function setNewAddress(address) {
+export async function setNewAddress(address, { discordID, signature }) {
   // TODO: Set DISCORD IDs here
   await setDoc(doc(db, 'addresses', address), {
-    exampleKey: 'exampleValue'
+    discordID,
+    signature
   })
 }
 

@@ -1,33 +1,24 @@
 import { useConnectWallet } from '@web3-onboard/react'
 import { ethers } from 'ethers'
 import React from 'react'
+import { setNewAddress } from './firebase'
+import { Button } from './general/Button'
 
-export const signMessage = async (provider, address) => {
-  const signMsg = ethers.utils.toUtf8Bytes('some txt message')
+export const signMessage = async (provider, address, discordID) => {
+  const msg = `My Discord ID is ${discordID}`
+  const signMsg = ethers.utils.toUtf8Bytes(msg)
 
-  console.log('signMessage', provider, address, signMsg)
-
-  // const signer = await provider.getSigner()
-  // console.log('signer', signer)
-  // const addr = await signer.getAddress()
-  // console.log('addr', addr)
-  // console.log('signer', signer)
-  const sig = await provider.send('personal_sign', [
+  const signature = await provider.send('personal_sign', [
     ethers.utils.hexlify(signMsg),
     address.toLowerCase()
   ])
 
-  console.log({ sig })
+  console.log(signature)
 
-  // const signature = await provider.request({
-  //   method: 'eth_sign',
-  //   params: [address, signMsg]
-  // })
-
-  // console.log('signature', signature)
-
-  // const recoveredAddress = utils.verifyMessage(signMsg, signature)
-  // console.log({ signMsg, signature, recoveredAddress })
+  await setNewAddress(address, {
+    discordID,
+    signature: signature.result
+  }).catch(e => console.log(e))
 }
 
 export const SignMessageButton = () => {
@@ -39,12 +30,12 @@ export const SignMessageButton = () => {
 
   return (
     <div>
-      <button
+      <Button
         className="bn-demo-button"
         onClick={() => signMessage(wallet.provider, address, discordID)}
       >
         Sign Message
-      </button>
+      </Button>
     </div>
   )
 }

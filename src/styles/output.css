@@ -456,6 +456,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   bottom: 0px;
   left: 0px;
 }
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.mt-32 {
+  margin-top: 8rem;
+}
 .flex {
   display: flex;
 }
@@ -468,6 +475,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .min-w-0 {
   min-width: 0px;
 }
+.max-w-4xl {
+  max-width: 56rem;
+}
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -479,6 +489,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .items-center {
   align-items: center;
+}
+.justify-center {
+  justify-content: center;
 }
 .gap-4 {
   gap: 1rem;

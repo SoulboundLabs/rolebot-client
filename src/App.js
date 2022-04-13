@@ -2,7 +2,6 @@ import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
 import { ethers } from 'ethers'
 import { default as React, useEffect, useState } from 'react'
 import { DisplayAddresses } from './DisplayAddresses'
-import { setNewAddress } from './firebase'
 import { Button } from './general/Button'
 import { initNotify, initWeb3Onboard } from './services'
 import { SignMessageButton } from './SignMessageButton'
@@ -34,15 +33,6 @@ const App = () => {
       ({ label }) => label
     )
 
-    const connectedWalletAddresses = connectedWallets
-      .map(({ accounts }) => accounts.map(account => account.address))
-      .flat()
-
-    for (const address of connectedWalletAddresses) {
-      setNewAddress(address).catch(e => console.log(e))
-    }
-
-    console.log('connectedWalletAddresses', connectedWalletAddresses)
     window.localStorage.setItem(
       'connectedWallets',
       JSON.stringify(connectedWalletsLabelArray)
@@ -80,7 +70,7 @@ const App = () => {
         balance={wallet?.accounts[0]?.balance}
         ens={wallet?.accounts[0]?.ens}
       />
-      <section className="main">
+      <section className="main container mx-auto max-w-4xl">
         <div className="main-content">
           <div className="vertical-main-container">
             <div className="container onboard">
@@ -171,10 +161,11 @@ const App = () => {
             </div>
           </div>
         </div>
+        <div className="mt-32">
+          <DisplayAddresses />
+          <SignMessageButton />
+        </div>
       </section>
-
-      <DisplayAddresses />
-      <SignMessageButton />
     </main>
   )
 }

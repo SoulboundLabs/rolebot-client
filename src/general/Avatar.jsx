@@ -1,7 +1,7 @@
-import jdenticon from 'jdenticon'
 import React, { useEffect, useRef } from 'react'
+const jdenticon = require('jdenticon')
 
-export const Avatar = ({ address = '0xtest', size = '100%' }) => {
+export const Avatar = ({ address = '0xtest', size = '40' }) => {
   const icon = useRef(null)
   useEffect(() => {
     jdenticon.update(icon.current, address)
