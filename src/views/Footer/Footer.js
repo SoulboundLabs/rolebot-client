@@ -1,10 +1,9 @@
 import React from 'react'
-import { version, dependencies } from '../../../package.json'
-
+import { dependencies, version } from '../../../package.json'
 import './Footer.css'
 
 const Footer = () => {
-  const staging = process.env.REACT_Footer_STAGING;
+  const staging = process.env.REACT_Footer_STAGING
 
   return (
     <section className="footer">
@@ -14,7 +13,9 @@ const Footer = () => {
         </span>
         <span>
           Web3 Onboard React version:{' '}
-          <i>{staging ? 'NEXT' : dependencies['@web3-onboard/react'].slice(1)}</i>
+          <i>
+            {staging ? 'NEXT' : dependencies['@web3-onboard/react'].slice(1)}
+          </i>
         </span>
         <span>
           Notify version:{' '}

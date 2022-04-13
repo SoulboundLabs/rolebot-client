@@ -1,28 +1,24 @@
-import stagingNotify from 'bnc-notify-staging'
-import Notify from 'bnc-notify'
-
-import blocknativeLogo from './icons/blocknative-logo'
-import blocknativeIcon from './icons/blocknative-icon'
-
-import { init } from '@web3-onboard/react'
+import fortmaticModule from '@web3-onboard/fortmatic'
+import gnosisModule from '@web3-onboard/gnosis'
 import injectedModule from '@web3-onboard/injected-wallets'
-import trezorModule from '@web3-onboard/trezor'
+import keepkeyModule from '@web3-onboard/keepkey'
 import ledgerModule from '@web3-onboard/ledger'
+import magicModule from '@web3-onboard/magic'
+import portisModule from '@web3-onboard/portis'
+import { init } from '@web3-onboard/react'
+import torusModule from '@web3-onboard/torus'
+import trezorModule from '@web3-onboard/trezor'
 import walletConnectModule from '@web3-onboard/walletconnect'
 import walletLinkModule from '@web3-onboard/walletlink'
-import portisModule from '@web3-onboard/portis'
-import magicModule from '@web3-onboard/magic'
-import fortmaticModule from '@web3-onboard/fortmatic'
-import torusModule from '@web3-onboard/torus'
-import keepkeyModule from '@web3-onboard/keepkey'
-import gnosisModule from '@web3-onboard/gnosis'
+import Notify from 'bnc-notify'
+import blocknativeIcon from './icons/blocknative-icon'
+import blocknativeLogo from './icons/blocknative-logo'
 
 // Replace with your DApp's Infura ID
 const INFURA_ID = 'cea9deb6467748b0b81b920b005c10c1'
 
 const networkId = 4
 const apiUrl = process.env.REACT_APP_API_URL
-const staging = process.env.REACT_APP_STAGING
 const dappId = '12153f55-f29e-4f11-aa07-90f10da5d778'
 
 const injected = injectedModule()
@@ -126,8 +122,7 @@ export const initWeb3Onboard = init({
 })
 
 export function initNotify() {
-  const notify = staging ? stagingNotify : Notify
-  return notify({
+  return Notify({
     dappId,
     networkId,
     apiUrl,

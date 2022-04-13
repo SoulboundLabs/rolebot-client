@@ -1,9 +1,9 @@
 import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
 import { ethers } from 'ethers'
 import { default as React, useEffect, useState } from 'react'
-import './App.css'
 import { DisplayAddresses } from './DisplayAddresses'
 import { setNewAddress } from './firebase'
+import { Button } from './general/Button'
 import { initNotify, initWeb3Onboard } from './services'
 import { SignMessageButton } from './SignMessageButton'
 import Header from './views/Header/Header.js'
@@ -111,30 +111,30 @@ const App = () => {
               )}
               <div>
                 {!wallet && (
-                  <button
-                    className="bn-demo-button"
+                  <Button
+                    className="bn-demo-Button"
                     onClick={() => {
                       connect()
                     }}
                   >
                     Select a Wallet
-                  </button>
+                  </Button>
                 )}
 
                 {wallet && (
-                  <button
-                    className="bn-demo-button"
+                  <Button
+                    className="bn-demo-Button"
                     onClick={() => {
                       connect()
                     }}
                   >
                     Connect Another Wallet
-                  </button>
+                  </Button>
                 )}
 
                 {wallet && (
-                  <button
-                    className="bn-demo-button"
+                  <Button
+                    className="bn-demo-Button"
                     onClick={() => {
                       disconnect(wallet)
                       const connectedWalletsList = connectedWallets.map(
@@ -147,25 +147,25 @@ const App = () => {
                     }}
                   >
                     Reset Wallet State
-                  </button>
+                  </Button>
                 )}
                 {wallet && wallet?.dashboard && (
-                  <button
-                    className="bn-demo-button"
+                  <Button
+                    className="bn-demo-Button"
                     onClick={wallet?.dashboard}
                   >
                     Open Wallet Dashboard
-                  </button>
+                  </Button>
                 )}
                 {wallet &&
                   wallet?.type === 'hardware' &&
                   wallet.accounts[0].address && (
-                    <button
-                      className="bn-demo-button"
+                    <Button
+                      className="bn-demo-Button"
                       onClick={web3Onboard.accountSelect}
                     >
                       Switch Account
-                    </button>
+                    </Button>
                   )}
               </div>
             </div>
