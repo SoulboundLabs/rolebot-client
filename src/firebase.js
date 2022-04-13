@@ -36,7 +36,9 @@ export async function setNewAddress(address) {
 export async function getAddresses() {
   const addressesCol = collection(db, 'addresses')
   const addressSnapshot = await getDocs(addressesCol)
-  const addressList = addressSnapshot.docs.map(doc => doc.data())
-  console.log(addressList)
+  const addressList = addressSnapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }))
   return addressList
 }

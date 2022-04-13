@@ -3,7 +3,7 @@ import { ethers } from 'ethers'
 import { default as React, useEffect, useState } from 'react'
 import VConsole from 'vconsole'
 import './App.css'
-import { DisplayAccounts } from './DisplayAccounts'
+import { DisplayAddresses } from './DisplayAddresses'
 import { setNewAddress } from './firebase'
 import { initNotify, initWeb3Onboard } from './services'
 import Footer from './views/Footer/Footer.js'
@@ -65,10 +65,6 @@ const App = () => {
     const connectedWalletAddresses = connectedWallets
       .map(({ accounts }) => accounts.map(account => account.address))
       .flat()
-
-    const setStuff = async () => {
-      return await setNewAddress()
-    }
 
     for (const address of connectedWalletAddresses) {
       setNewAddress(address).catch(e => console.log(e))
@@ -330,7 +326,7 @@ const App = () => {
             <div className="container onboard">
               <h2>Onboarding Users with Web3-Onboard</h2>
 
-              <DisplayAccounts />
+              <DisplayAddresses />
               {wallet && (
                 <div className="network-select">
                   <label>Switch Chains</label>
