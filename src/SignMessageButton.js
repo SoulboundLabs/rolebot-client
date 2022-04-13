@@ -34,7 +34,7 @@ export const SignMessageButton = () => {
         className="bn-demo-button"
         onClick={() => signMessage(wallet.provider, address, discordID)}
       >
-        Sign Message
+        3. Sign Message
       </Button>
     </div>
   )

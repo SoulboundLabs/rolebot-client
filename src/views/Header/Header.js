@@ -1,6 +1,6 @@
 import React from 'react'
 import networkEnum from '../../networkEnum'
-import BNLogo from '../../icons/blocknative-logo-dark.svg'
+// import BNLogo from '../../icons/blocknative-logo-dark.svg'
 import avatarPlaceholder from '../../icons/avatar-placeholder.png'
 import './Header.css'
 
@@ -16,7 +16,8 @@ const Header = props => {
         rel="noopener noreferrer"
         title="Blocknative Site"
       >
-        <img className="bn-logo-demo" src={BNLogo} alt="Block Native Logo" />
+        Rolebot
+        {/* <img className="bn-logo-demo" src={BNLogo} alt="Block Native Logo" /> */}
       </a>
       <div className="user-info">
         {ens?.name ? (

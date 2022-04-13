@@ -6,6 +6,7 @@ import { Button } from './general/Button'
 import { initNotify, initWeb3Onboard } from './services'
 import { SignMessageButton } from './SignMessageButton'
 import Header from './views/Header/Header.js'
+import { DiscordAuthURL } from './discordAuth';
 
 let provider
 
@@ -16,6 +17,25 @@ const App = () => {
 
   const [web3Onboard, setWeb3Onboard] = useState(null)
   const [notify, setNotify] = useState(null)
+  const [discordUser, setDiscordUser] = useState(null);
+
+  useEffect(() => {
+    // Check for OAuth token
+    const fragment = new URLSearchParams(window.location.hash.slice(1));
+		const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
+    if (!accessToken) return;
+
+    window.fetch('https://discord.com/api/users/@me', {
+			headers: {
+				authorization: `${tokenType} ${accessToken}`,
+			},
+		}).then(result => result.json())
+			.then(response => { setDiscordUser(response); })
+			.catch(console.error);
+
+    // TODO Security stuff?
+  
+  }, [])
 
   useEffect(() => {
     setWeb3Onboard(initWeb3Onboard)
@@ -74,8 +94,19 @@ const App = () => {
         <div className="main-content">
           <div className="vertical-main-container">
             <div className="container onboard">
-              <h2>Onboarding Users with Web3-Onboard</h2>
-
+              <h2>Get verified for your on-chain activity in three simple steps</h2>
+              <Button
+                className="bn-demo-Button"
+                onClick={() => {
+                  window.location.replace(DiscordAuthURL)
+                }}
+                disabled={discordUser}
+              >
+                1. Log in with Discord
+              </Button>
+              {discordUser && (
+                <div>{ discordUser.username } ({ discordUser.id })</div>) 
+              }
               {wallet && (
                 <div className="network-select">
                   <label>Switch Chains</label>
@@ -107,7 +138,7 @@ const App = () => {
                       connect()
                     }}
                   >
-                    Select a Wallet
+                    2. Select a Wallet
                   </Button>
                 )}
 
