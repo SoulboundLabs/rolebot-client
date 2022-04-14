@@ -194,7 +194,7 @@ const App = () => {
         </div>
         <div className="mt-32">
           <DisplayAddresses />
-          <SignMessageButton />
+          <SignMessageButton discordID={discordUser?.id} />
         </div>
       </section>
     </main>
