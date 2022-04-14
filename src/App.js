@@ -6,7 +6,6 @@ import { Button } from './general/Button'
 import { initNotify, initWeb3Onboard } from './services'
 import { SignMessageButton } from './SignMessageButton'
 import Header from './views/Header/Header.js'
-import { DiscordAuthURL } from './discordAuth';
 
 let provider
 
@@ -18,6 +17,8 @@ const App = () => {
   const [web3Onboard, setWeb3Onboard] = useState(null)
   const [notify, setNotify] = useState(null)
   const [discordUser, setDiscordUser] = useState(null);
+
+  const discordAuthURL = process.env.REACT_APP_DISCORD_AUTH_URL;
 
   useEffect(() => {
     // Check for OAuth token
@@ -98,7 +99,7 @@ const App = () => {
               <Button
                 className="bn-demo-Button"
                 onClick={() => {
-                  window.location.replace(DiscordAuthURL)
+                  window.location.replace(discordAuthURL)
                 }}
                 disabled={discordUser}
               >
