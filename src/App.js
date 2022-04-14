@@ -2,11 +2,11 @@ import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
 import { ethers } from 'ethers'
 import { default as React, useEffect, useState } from 'react'
 import { DisplayAddresses } from './DisplayAddresses'
+import FAQ from './Faq'
 import { Button } from './general/Button'
 import { initNotify, initWeb3Onboard } from './services'
 import { SignMessageButton } from './SignMessageButton'
 import Header from './views/Header/Header.js'
-
 let provider
 
 const App = () => {
@@ -16,26 +16,32 @@ const App = () => {
 
   const [web3Onboard, setWeb3Onboard] = useState(null)
   const [notify, setNotify] = useState(null)
-  const [discordUser, setDiscordUser] = useState(null);
+  const [discordUser, setDiscordUser] = useState(null)
 
-  const discordAuthURL = process.env.REACT_APP_DISCORD_AUTH_URL;
+  const discordAuthURL = process.env.REACT_APP_DISCORD_AUTH_URL
 
   useEffect(() => {
     // Check for OAuth token
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
-		const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-    if (!accessToken) return;
+    const fragment = new URLSearchParams(window.location.hash.slice(1))
+    const [accessToken, tokenType] = [
+      fragment.get('access_token'),
+      fragment.get('token_type')
+    ]
+    if (!accessToken) return
 
-    window.fetch('https://discord.com/api/users/@me', {
-			headers: {
-				authorization: `${tokenType} ${accessToken}`,
-			},
-		}).then(result => result.json())
-			.then(response => { setDiscordUser(response); })
-			.catch(console.error);
+    window
+      .fetch('https://discord.com/api/users/@me', {
+        headers: {
+          authorization: `${tokenType} ${accessToken}`
+        }
+      })
+      .then(result => result.json())
+      .then(response => {
+        setDiscordUser(response)
+      })
+      .catch(console.error)
 
     // TODO Security stuff?
-  
   }, [])
 
   useEffect(() => {
@@ -95,7 +101,9 @@ const App = () => {
         <div className="main-content">
           <div className="vertical-main-container">
             <div className="container onboard">
-              <h2>Get verified for your on-chain activity in three simple steps</h2>
+              <h2>
+                Get verified for your on-chain activity in three simple steps
+              </h2>
               <Button
                 className="bn-demo-Button"
                 onClick={() => {
@@ -106,8 +114,10 @@ const App = () => {
                 1. Log in with Discord
               </Button>
               {discordUser && (
-                <div>{ discordUser.username } ({ discordUser.id })</div>) 
-              }
+                <div>
+                  {discordUser.username} ({discordUser.id})
+                </div>
+              )}
               {wallet && (
                 <div className="network-select">
                   <label>Switch Chains</label>
@@ -197,6 +207,7 @@ const App = () => {
           <DisplayAddresses />
           <SignMessageButton discordID={discordUser?.id} />
         </div>
+        <FAQ />
       </section>
     </main>
   )

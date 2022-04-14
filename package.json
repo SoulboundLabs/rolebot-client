@@ -29,6 +29,7 @@
   },
   "scripts": {
     "start": "npm run watch:css && HTTPS=true react-scripts --openssl-legacy-provider start",
+    "start-alt": "npm run watch:css && HTTPS=true react-scripts start",
     "build": "npm run watch:css && CI=false react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -54,6 +55,7 @@
     "postcss": "^8.4.12",
     "postcss-cli": "^9.1.0",
     "prettier": "^2.0.5",
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.0.24",
+    "watch": "^1.0.2"
   }
 }
